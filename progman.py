@@ -1,9 +1,16 @@
+
 import tkinter as tk
 from tkinter import messagebox
 import subprocess
 import os
 
-PROGMAN_FILE = "progman.dat"
+PROGMAN_FILE = """[programs]
+notepad = echo notepad; notepad.exe
+calc = echo calc; calc.exe
+
+[paint]
+paint = echo paint; pbrush.exe
+"""
 
 class ProgManApp:
     def __init__(self, root):
@@ -27,13 +34,13 @@ class ProgManApp:
         self.label.pack(expand=True)
 
     def load_menus(self):
-        if not os.path.exists(PROGMAN_FILE):
+        if ""==PROGMAN_FILE:
             messagebox.showerror("Erro", "progman.dat não encontrado")
             return
 
         current_menu = None
-
-        with open(PROGMAN_FILE, "r", encoding="utf-8") as f:
+        f=PROGMAN_FILE.split("\n")
+        if 0==0:
             for line in f:
                 line = line.strip()
 
@@ -76,4 +83,3 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = ProgManApp(root)
     root.mainloop()
-
